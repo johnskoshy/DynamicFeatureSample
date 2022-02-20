@@ -10,7 +10,7 @@ import com.example.dynamicfeaturesample.DynamicBaseActivity
 class DynamicFeatureActivity : DynamicBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.DynamicActivityTheme)
+        //setTheme(R.style.DynamicActivityTheme)
         setContentView(R.layout.activity_dynamic_feature)
         val color = getAttributeColor(this, R.attr.dynamicTextColor)
         Toast.makeText(this, "Color id from style: $color", Toast.LENGTH_SHORT).show()
