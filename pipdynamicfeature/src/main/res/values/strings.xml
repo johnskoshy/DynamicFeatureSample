@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="resume">Resume</string>
+    <string name="pause">Pause</string>
+    <string name="pip">PIP</string>
+    <string name="sample_item">Sample item %d</string>
+</resources>

@@ -2,4 +2,7 @@
     <string name="app_name">Dynamic Feature Sample</string>
     <string name="title_dynamicfeature">dynamicfeature</string>
     <string name="launch_dynamic_feature">Launch Dynamic Feature</string>
+    <string name="launch_pip_dynamic_feature">Launch PiP Dynamic Feature</string>
+    <string name="title_pipdynamicfeature">pipdynamicfeature</string>
+    <string name="piptask">com.example.dynamicfeaturesample.piptask</string>
 </resources>

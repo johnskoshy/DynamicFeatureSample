@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.example.pipdynamicfeature">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_pipdynamicfeature">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application>
+        <activity
+            android:name=".PictureInPictureActivity"
+            android:autoRemoveFromRecents="true"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:excludeFromRecents="true"
+            android:resizeableActivity="true"
+            android:screenOrientation="locked"
+            android:supportsPictureInPicture="true"
+            android:taskAffinity="@string/piptask" />
+    </application>
+</manifest>

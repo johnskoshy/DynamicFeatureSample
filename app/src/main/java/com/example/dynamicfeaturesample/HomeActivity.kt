@@ -15,6 +15,7 @@ import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 class HomeActivity : Activity() {
     private lateinit var manager: SplitInstallManager
     private lateinit var progress: ProgressBar
+    private var isPipModule = false
     private val listener = SplitInstallStateUpdatedListener { state ->
         when (state.status()) {
             SplitInstallSessionStatus.DOWNLOADING -> {
@@ -23,7 +24,11 @@ class HomeActivity : Activity() {
                 progress.progress = progressValue
             }
             SplitInstallSessionStatus.INSTALLED -> {
-                launchDynamicFeature()
+                if (isPipModule) {
+                    launchPipDynamicFeature()
+                } else {
+                    launchDynamicFeature()
+                }
             }
 
             SplitInstallSessionStatus.INSTALLING -> progress.progress = 100
@@ -39,7 +44,12 @@ class HomeActivity : Activity() {
         setContentView(R.layout.activity_home)
         manager = SplitInstallManagerFactory.create(this)
         findViewById<Button>(R.id.textButton).setOnClickListener {
+            isPipModule = false
             launchDynamicFeature()
+        }
+        findViewById<Button>(R.id.pipDynamicButton).setOnClickListener {
+            isPipModule = true
+            launchPipDynamicFeature()
         }
         progress = findViewById(R.id.progress_horizontal)
     }
@@ -66,6 +76,22 @@ class HomeActivity : Activity() {
         }
         val request =
             SplitInstallRequest.newBuilder().addModule(getString(R.string.title_dynamicfeature))
+                .build()
+        manager.startInstall(request)
+    }
+
+    private fun launchPipDynamicFeature() {
+        if (manager.installedModules.contains(getString(R.string.title_pipdynamicfeature))) {
+            val intent = Intent()
+            intent.setClassName(
+                packageName,
+                "com.example.pipdynamicfeature.PictureInPictureActivity"
+            )
+            startActivity(intent)
+            return
+        }
+        val request =
+            SplitInstallRequest.newBuilder().addModule(getString(R.string.title_pipdynamicfeature))
                 .build()
         manager.startInstall(request)
     }
